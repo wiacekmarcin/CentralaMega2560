@@ -1,6 +1,6 @@
 #include "temperatury.h"
 
-
+#if 0
 
 void temperatury()
 {
@@ -80,3 +80,5 @@ void temperatury_presentation()
     present(ID_S_TEMP_HUM_OUT,S_TEMP,"Temp (z wilg) na zewnatrzn");
     present(ID_S_TEMP_HUM_POMPA,S_TEMP,"Temp (z wilg) na zewnatrzn");
 }
+
+#endif

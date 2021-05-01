@@ -10,7 +10,7 @@
 #include "licznikiwody.h"
 #include "energiaelektryczna.h"
 #include "ogrzewanie.h"
-
+#include "ogrzewanie_temp.h"
 #include <MySensors.h>
 /*
  * The MySensors Arduino library handles the wireless radio link and protocol
@@ -154,7 +154,7 @@ MyMessage msg_S_MULTIMETER_V_CURRENT(ID_S_MULTIMETER,V_CURRENT);
 // V_VOLTAGE	38	Voltage level
 // V_CURRENT	39	Current level
 #endif
-
+OgrzwanieTemp ot;
 
 
 void setup()
@@ -163,29 +163,22 @@ void setup()
 	randomSeed(analogRead(0));
 
 	wait(LONG_WAIT);
-	Serial1.println("GW Started");
+
+	ot.init();
 }
 
 void presentation()
 {
 	// Send the Sketch Version Information to the Gateway
-	Serial1.print("Send Sketch Info: ");
 	sendSketchInfo(SKETCH_NAME, SKETCH_VERSION);
-	Serial1.print(SKETCH_NAME);
-	Serial1.println(SKETCH_VERSION);
 	wait(LONG_WAIT);
 
-	// Get controller configuration
-	Serial1.print("Get Config: ");
+	// Get controller configuratio
 	metric = getControllerConfig().isMetric;
-	Serial1.println(metric ? "Metric":"Imperial");
 	wait(LONG_WAIT);
 
-	// Register all sensors to gw (they will be created as child devices)
-	Serial1.println("Presenting Nodes");
-	Serial1.println("________________");
-
-
+	
+#if 0
 	kontaktrony_presentation();
 	wait(SHORT_WAIT);
 
@@ -193,26 +186,27 @@ void presentation()
 	czujnikiruchu_presentation();
 	wait(SHORT_WAIT);
 
-  swiatla_presentation();
-  wait(SHORT_WAIT);
+  	swiatla_presentation();
+  	wait(SHORT_WAIT);
 
-  zaslony_presentation();
-  wait(SHORT_WAIT);
+  	zaslony_presentation();
+  	wait(SHORT_WAIT);
 
-  temperatury_presentation();
-  wait(SHORT_WAIT);
+  	temperatury_presentation();
+  	wait(SHORT_WAIT);
 
-  wilgotnosci_presentation();
-  wait(SHORT_WAIT);
+  	wilgotnosci_presentation();
+  	wait(SHORT_WAIT);
 
-  licznikiwody_presentation();
-  wait(SHORT_WAIT);
+  	licznikiwody_presentation();
+  	wait(SHORT_WAIT);
 
-  energiaelektryczna_presentation();
-  wait(SHORT_WAIT);
+  	energiaelektryczna_presentation();
+  	wait(SHORT_WAIT);
 
-  ogrzewanie_presentation();
-  wait(SHORT_WAIT);
+  	ogrzewanie_presentation();
+  	wait(SHORT_WAIT);
+#endif
 
 #ifdef ID_S_BARO
 	Serial1.println("  S_BARO");
@@ -263,51 +257,29 @@ void presentation()
 	wait(SHORT_WAIT);
 #endif
 
-
-
-
-
-	Serial1.println("________________");
+	ot.presentation();
 
 }
 
 void loop()
 {
-	Serial1.println("");
-	Serial1.println("");
-	Serial1.println("");
-	Serial1.println("#########################");
-	randNumber=random(0,101);
-
-	Serial1.print("RandomNumber:");
-	Serial1.println(randNumber);
-	// Send fake battery level
-	Serial1.println("Send Battery Level");
 	sendBatteryLevel(100);
 	wait(LONG_WAIT);
 
-	// Request time
-	Serial1.println("Request Time");
 	requestTime();
 	wait(LONG_WAIT);
 
+#if 0
 	kontaktrony();
-
-  czujnikiruchu();
-
-  zaslony();
-  
-  swiatla();
-
-  temperatury();
-
-  wilgotnosci();
-
-  licznikiwody();
-
-  energiaelektryczna();
-
-  ogrzewanie();
+	czujnikiruchu();
+	zaslony();
+	swiatla();
+  	temperatury();
+	wilgotnosci();
+	licznikiwody();
+  	energiaelektryczna();
+	ogrzewanie();
+#endif
 
 #ifdef ID_S_BARO
 	baro();
@@ -354,9 +326,6 @@ void loop()
 	custom();
 #endif
 
-	sendBatteryLevel(100);
-	wait(SHORT_WAIT);
-	Serial1.println("#########################");
 	wait(SLEEP_TIME); //sleep a bit
 }
 
@@ -580,8 +549,14 @@ void custom()
 
 void receive(const MyMessage &message)
 {
-	
-
-		Serial1.print("Unknown/Unimplemented message type: ");
-		Serial1.println(message.getType());
+	switch (message.getType()) {
+	case V_LIGHT: 
+	//case V_STATUS: 
+	{
+		ot.setMessage(&message);
+		break;
+	}
+	default:
+		break;
+	}
 }

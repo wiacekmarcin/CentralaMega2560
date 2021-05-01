@@ -1,6 +1,6 @@
 #include "zaslony.h"
 
-
+#if 0
 void zaslony()
 {
     MyMessage msg_S_COVER_SYP_IN_U(ID_S_COVER_SYP_IN,V_UP);
@@ -67,3 +67,5 @@ void zaslony_presentation()
     present(ID_S_COVER_POK_IN,S_COVER,"Zaslony pokoj");
     present(ID_S_COVER_POK_OUT,S_COVER,"Rolety pokoj");
 }
+
+#endif

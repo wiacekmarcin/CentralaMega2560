@@ -28,7 +28,7 @@
 //}
 //#endif
 
-
+#if 0
 
 void czujnikiruchu()
 {
@@ -81,3 +81,4 @@ void czujnikiruchu_presentation()
     present(ID_S_RUCH_KUCHNIA_SAL,S_MOTION,"CZ. R. kuchnia drzwi w strone salonu");
 }
 
+#endif

@@ -1,6 +1,6 @@
 #include "kontaktrony.h"
 
-
+#if 0
 //#ifdef ID_S_ARMED
 //bool isArmed;
 //#endif
@@ -112,3 +112,4 @@ void kontaktrony_presentation()
     present(ID_S_OKNO_KUCH_OTW_2,S_DOOR,"Okno prawe kuchnia");
     present(ID_S_OKNO_KUCH_UCH,S_DOOR,"Okno uchylone kuchnia");
 }
+#endif

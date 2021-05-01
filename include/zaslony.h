@@ -1,7 +1,7 @@
 #ifndef _ZASLONY_H
 #define _ZASLONY_H
 
-
+#if 0
 #include "main.h"
 #include <core/MySensorsCore.h>
 
@@ -21,6 +21,7 @@
 void zaslony();
 void zaslony_presentation();
 
+#endif
 //MyMessage msg_S_COVER_U(ID_S_COVER,V_UP);
 //MyMessage msg_S_COVER_D(ID_S_COVER,V_DOWN);
 //MyMessage msg_S_COVER_S(ID_S_COVER,V_STOP);

@@ -1,6 +1,7 @@
 #ifndef _TEMPERATURA_H_
 #define _TEMPERATURA_H_
 
+#if 0
 #include "main.h"
 #include <core/MySensorsCore.h>
 
@@ -34,6 +35,7 @@ void temperatury_presentation();
 
 //MyMessage msg_S_TEMP(ID_S_TEMP,V_TEMP);
 
+#endif
 #endif
 
 

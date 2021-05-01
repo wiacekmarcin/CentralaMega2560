@@ -4,6 +4,8 @@
 #include "main.h"
 #include <core/MySensorsCore.h>
 
+#if 0
+
 #define ID_S_LIGHT_HOLA1          51 
 #define ID_S_LIGHT_HOLA2          52 
 #define ID_S_LIGHT_HOLA3          53 
@@ -54,10 +56,11 @@
 
 
 
+
 void swiatla();
 void swiatla_presentation();
 
-
+#endif
 //#ifdef ID_S_LIGHT
 //MyMessage msg_S_LIGHT(ID_S_LIGHT,V_LIGHT);
 //bool isLightOn=0;

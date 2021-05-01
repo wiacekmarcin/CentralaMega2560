@@ -1,6 +1,7 @@
 #ifndef _TEMP_I_WULGONOSC_H_
 #define _TEMP_I_WULGONOSC_H_
 
+#if 0
 #include "main.h"
 #include <core/MySensorsCore.h>
 
@@ -21,6 +22,7 @@
 void wilgotnosci();
 void wilgotnosci_presentation();
 
+#endif
 
 
 

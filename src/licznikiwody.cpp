@@ -1,6 +1,8 @@
 #include "licznikiwody.h"
 
 
+#if 0
+
 
 
 void licznikiwody()
@@ -85,3 +87,5 @@ void licznikiwody_presentation()
     present(ID_S_WATER_ZW_KUCH_UMY,S_WATER,"Zimna woda umywalka kuchnia");
     present(ID_S_WATER_ZW_KUCH_ZMY,S_WATER,"Zimna woda zmywarka kuchnia");
 }
+
+#endif // 0

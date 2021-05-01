@@ -1,6 +1,8 @@
 #ifndef _KONTAKTRONY_H_
 #define _KONTAKTRONY_H_
 
+#if 0
+
 #include "main.h"
 #include <core/MySensorsCore.h>
 
@@ -30,4 +32,7 @@ void kontaktrony_presentation();
 #define ID_S_OKNO_KUCH_OTW_1        22
 #define ID_S_OKNO_KUCH_OTW_2        23
 #define ID_S_OKNO_KUCH_UCH          24
+
+
+#endif
 #endif

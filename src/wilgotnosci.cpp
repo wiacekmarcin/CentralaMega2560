@@ -1,6 +1,6 @@
 #include "wilgotnosci.h"
 
-
+#if 0
 
 void wilgotnosci()
 {
@@ -45,3 +45,5 @@ void wilgotnosci_presentation()
     present(ID_S_HUM_TEMP_OUT,S_HUM,"Wilgotnosc na zewn.");
     present(ID_S_HUM_TEMP_POMPA,S_HUM,"Wilgotnosc pompa ogrz.");
 }
+
+#endif

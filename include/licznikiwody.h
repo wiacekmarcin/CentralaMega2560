@@ -1,6 +1,7 @@
 #ifndef _LICZNIKI_WODY_H_
 #define _LICZNIKI_WODY_H_
 
+#if 0
 #include "main.h"
 #include <core/MySensorsCore.h>
 
@@ -19,6 +20,8 @@
 #define ID_S_WATER_CW_KUCH_UMY  183
 #define ID_S_WATER_ZW_KUCH_UMY  184
 #define ID_S_WATER_ZW_KUCH_ZMY  185
+
+#endif
 
 void licznikiwody();
 void licznikiwody_presentation();

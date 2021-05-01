@@ -1,6 +1,7 @@
 #ifndef _CZUJNIKIRUCHU_H_
 #define _CZUJNIKIRUCHU_H_
 
+#if 0
 #include "main.h"
 #include <core/MySensorsCore.h>
 
@@ -24,5 +25,7 @@
 void czujnikiruchu();
 
 void czujnikiruchu_presentation();
+
+#endif
 
 #endif

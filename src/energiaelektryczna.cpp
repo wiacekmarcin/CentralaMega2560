@@ -1,6 +1,6 @@
 #include "energiaelektryczna.h"
 
-
+#if 0
 void energiaelektryczna()
 {
     
@@ -16,3 +16,4 @@ void energiaelektryczna_presentation()
 {
     present(ID_S_POWER230,S_POWER,"Zyzycie energii 230V");
 }
+#endif

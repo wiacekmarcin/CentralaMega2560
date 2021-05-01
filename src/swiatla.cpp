@@ -1,8 +1,9 @@
 #include "swiatla.h"
 
-
+#if 0
 void swiatla()
 {
+
     MyMessage msg_S_LIGHT_V_HOLA1(ID_S_LIGHT_HOLA1,V_LIGHT);
     MyMessage msg_S_LIGHT_V_HOLA2(ID_S_LIGHT_HOLA2,V_LIGHT);
     MyMessage msg_S_LIGHT_V_HOLA3(ID_S_LIGHT_HOLA3,V_LIGHT);
@@ -50,6 +51,7 @@ void swiatla()
     MyMessage msg_S_LIGHT_V_SALL21(ID_S_LIGHT_SALL21,V_LIGHT);
     MyMessage msg_S_LIGHT_V_SALL22(ID_S_LIGHT_SALL22,V_LIGHT);
     MyMessage msg_S_LIGHT_V_SYPW(ID_S_LIGHT_SYPW,V_LIGHT);
+
     msg_S_LIGHT_V_HOLA1.set(0);
     msg_S_LIGHT_V_HOLA2.set(0);
     msg_S_LIGHT_V_HOLA3.set(0);
@@ -97,6 +99,8 @@ void swiatla()
     msg_S_LIGHT_V_SALL21.set(0);
     msg_S_LIGHT_V_SALL22.set(0);
     msg_S_LIGHT_V_SYPW.set(0);
+
+    
 }
 void swiatla_presentation()
 {
@@ -146,3 +150,4 @@ void swiatla_presentation()
     present(ID_S_LIGHT_SALL22,S_LIGHT,"Swiatlo salon Led prawe 2");
     present(ID_S_LIGHT_SYPW,S_LIGHT,"Swiatlo syplalnia nad lozkiem");
 }
+#endif

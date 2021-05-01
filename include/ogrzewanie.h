@@ -1,6 +1,7 @@
 #ifndef _OGRZEWWANIE_H_
 #define _OGRZEWANIE_H_
 
+#if 0
 #include "main.h"
 #include <core/MySensorsCore.h>
 
@@ -13,9 +14,11 @@
 #define ID_S_HEATER_SAL 197
 #define ID_S_HEATER_KUCH        198
 
+
 void ogrzewanie();
 void ogrzewanie_presentation();
 
+#endif
 
 
 
