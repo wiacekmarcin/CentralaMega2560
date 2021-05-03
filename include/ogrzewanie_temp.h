@@ -14,7 +14,7 @@
 #define W_LAZIENKA 216
 #define O_LAMPA 217
 
-#define POMPAPIN 53 //fioloetowy
+#define O_POMPAPIN 53 //fioloetowy
 #define O_LAZIENKAPIN 52 //brazowy
 #define O_SALONPIN 51 //czerwony
 #define O_KUCHNIAPIN 50 //zolty
@@ -46,11 +46,11 @@ protected:
 	private:
 	    MyMessage msg_OG_POMPA;
     	MyMessage msg_OG_SALON;
-    	MyMessage msg_OG_KUHCNIA;
+    	MyMessage msg_OG_KUCHNIA;
  	    MyMessage msg_OG_LAZIENKA;
 		MyMessage msg_OG_LAMPA;
     	MyMessage msg_OS_KWIATY;
-    	MyMessage msg_WI_KUHCNIA;
+    	MyMessage msg_WI_KUCHNIA;
     	MyMessage msg_WI_LAZIENKA;
 		
 

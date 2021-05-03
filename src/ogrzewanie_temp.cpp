@@ -4,11 +4,11 @@
 OgrzwanieTemp::OgrzwanieTemp()    :
     msg_OG_POMPA(O_POMPA,V_LIGHT),
     msg_OG_SALON(O_SALON,V_LIGHT),
-    msg_OG_KUHCNIA(O_KUCHNIA,V_LIGHT),
+    msg_OG_KUCHNIA(O_KUCHNIA,V_LIGHT),
     msg_OG_LAZIENKA(O_LAZIENKA,V_LIGHT),
     msg_OG_LAMPA(O_LAMPA,V_LIGHT),
     msg_OS_KWIATY(O_KWIATY,V_LIGHT),
-    msg_WI_KUHCNIA(W_KUCHNIA,V_LIGHT),
+    msg_WI_KUCHNIA(W_KUCHNIA,V_LIGHT),
     msg_WI_LAZIENKA(W_LAZIENKA,V_LIGHT),
     
     o_lazienka(false),
@@ -18,15 +18,15 @@ OgrzwanieTemp::OgrzwanieTemp()    :
 {
     msg_OG_POMPA.set(0);
     msg_OG_SALON.set(0);
-    msg_OG_KUHCNIA.set(0);
+    msg_OG_KUCHNIA.set(0);
     msg_OG_LAZIENKA.set(0);
     msg_OS_KWIATY.set(0);
-    msg_WI_KUHCNIA.set(0);
+    msg_WI_KUCHNIA.set(0);
     msg_WI_LAZIENKA.set(0);
 }
 void OgrzwanieTemp::init()
 {
-    pinMode(POMPAPIN, OUTPUT);
+    pinMode(O_POMPAPIN, OUTPUT);
     pinMode(O_LAZIENKAPIN, OUTPUT);
     pinMode(O_SALONPIN, OUTPUT);
     pinMode(O_KUCHNIAPIN, OUTPUT);
@@ -37,11 +37,11 @@ void OgrzwanieTemp::init()
  
     send(msg_OG_POMPA);
     send(msg_OG_SALON);
-    send(msg_OG_KUHCNIA);
+    send(msg_OG_KUCHNIA);
  	send(msg_OG_LAZIENKA);
 	send(msg_OG_LAMPA);
     send(msg_OS_KWIATY);
-    send(msg_WI_KUHCNIA);
+    send(msg_WI_KUCHNIA);
     send(msg_WI_LAZIENKA);
 
 }
@@ -63,7 +63,7 @@ void OgrzwanieTemp::setOgrzLazienka(bool val)
 {
     o_lazienka = val;
     digitalWrite(O_LAZIENKAPIN, val?HIGH:LOW);
-    digitalWrite(O_POMPA,   (o_lazienka||o_kuchnia||o_salon)?HIGH:LOW);
+    digitalWrite(O_POMPAPIN,   (o_lazienka||o_kuchnia||o_salon)?HIGH:LOW);
     msg_OG_LAZIENKA.set(val);
     send(msg_OG_LAZIENKA);
     msg_OG_POMPA.set(o_lazienka||o_kuchnia||o_salon);
@@ -74,9 +74,9 @@ void OgrzwanieTemp::setOgrzKuchnia(bool val)
 {
     o_kuchnia = val;
     digitalWrite(O_KUCHNIAPIN, val?HIGH:LOW);
-    digitalWrite(O_POMPA,   (o_lazienka||o_kuchnia||o_salon)?HIGH:LOW);
-    msg_OG_KUHCNIA.set(val);
-    send(msg_OG_KUHCNIA);
+    digitalWrite(O_POMPAPIN,   (o_lazienka||o_kuchnia||o_salon)?HIGH:LOW);
+    msg_OG_KUCHNIA.set(val);
+    send(msg_OG_KUCHNIA);
     msg_OG_POMPA.set(o_lazienka||o_kuchnia||o_salon);
     send(msg_OG_POMPA);
 }
@@ -85,7 +85,7 @@ void OgrzwanieTemp::setOgrzSalon(bool val)
 {
     o_salon = val;
     digitalWrite(O_SALONPIN, val?HIGH:LOW);
-    digitalWrite(O_POMPA,   (o_lazienka||o_kuchnia||o_salon)?HIGH:LOW);
+    digitalWrite(O_POMPAPIN,   (o_lazienka||o_kuchnia||o_salon)?HIGH:LOW);
     msg_OG_SALON.set(val);
     send(msg_OG_SALON);
     msg_OG_POMPA.set(o_lazienka||o_kuchnia||o_salon);
@@ -101,11 +101,11 @@ void OgrzwanieTemp::setPompa(bool val)
     digitalWrite(O_KUCHNIAPIN, val?HIGH:LOW);
     digitalWrite(O_LAZIENKAPIN, val?HIGH:LOW);
     digitalWrite(O_SALONPIN, val?HIGH:LOW);
-    digitalWrite(O_POMPA,   (o_lazienka||o_kuchnia||o_salon)?HIGH:LOW);
+    digitalWrite(O_POMPAPIN,   (o_lazienka||o_kuchnia||o_salon)?HIGH:LOW);
     msg_OG_LAZIENKA.set(val);
     send(msg_OG_LAZIENKA);
-    msg_OG_KUHCNIA.set(val);
-    send(msg_OG_LAZIENKA);
+    msg_OG_KUCHNIA.set(val);
+    send(msg_OG_KUCHNIA);
     msg_OG_SALON.set(val);
     send(msg_OG_SALON);
     msg_OG_POMPA.set(o_lazienka||o_kuchnia||o_salon);
@@ -140,8 +140,8 @@ bool OgrzwanieTemp::setMessage(const MyMessage *msg)
             return true;
         case W_KUCHNIA: 
             digitalWrite(W_KUCHNIAPIN, msg->getBool()?HIGH:LOW);
-            msg_WI_KUHCNIA.set(msg->getBool());
-            send(msg_WI_KUHCNIA);
+            msg_WI_KUCHNIA.set(msg->getBool());
+            send(msg_WI_KUCHNIA);
             return true;
         case W_LAZIENKA: 
             digitalWrite(W_LAZIENKAPIN, msg->getBool()?HIGH:LOW);
@@ -153,11 +153,3 @@ bool OgrzwanieTemp::setMessage(const MyMessage *msg)
     }
 }
 
-#define O_POMPA 210
-#define O_SALON 211
-#define O_KUCHNIA 212
-#define O_LAZIENKA 213
-#define O_KWIATY 214
-#define W_KUCHNIA 215
-#define W_LAZIENKA 216
-#define O_LAMPA 217
