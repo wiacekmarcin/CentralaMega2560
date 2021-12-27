@@ -6,6 +6,10 @@ OgrzwanieTemp::OgrzwanieTemp()    :
     msg_OG_SALON(O_SALON,V_LIGHT),
     msg_OG_KUHCNIA(O_KUCHNIA,V_LIGHT),
     msg_OG_LAZIENKA(O_LAZIENKA,V_LIGHT),
+    msg_OG_HOL1(O_HOL1,V_LIGHT),
+    msg_OG_HOL2(O_HOL2,V_LIGHT),
+    msg_OG_HOL3(O_HOL3,V_LIGHT),
+    msg_OG_WC(O_WC,V_LIGHT),
     msg_OG_LAMPA(O_LAMPA,V_LIGHT),
     msg_OS_KWIATY(O_KWIATY,V_LIGHT),
     msg_WI_KUHCNIA(W_KUCHNIA,V_LIGHT),
@@ -20,6 +24,10 @@ OgrzwanieTemp::OgrzwanieTemp()    :
     msg_OG_SALON.set(0);
     msg_OG_KUHCNIA.set(0);
     msg_OG_LAZIENKA.set(0);
+    msg_OG_HOL1.set(0);
+    msg_OG_HOL2.set(0);
+    msg_OG_HOL3.set(0);
+    msg_OG_WC.set(0);
     msg_OS_KWIATY.set(0);
     msg_WI_KUHCNIA.set(0);
     msg_WI_LAZIENKA.set(0);
@@ -31,6 +39,10 @@ void OgrzwanieTemp::init()
     pinMode(O_SALONPIN, OUTPUT);
     pinMode(O_KUCHNIAPIN, OUTPUT);
     pinMode(O_LAMPAPIN, OUTPUT);
+    pinMode(O_HOL1PIN, OUTPUT);
+    pinMode(O_HOL2PIN, OUTPUT);
+    pinMode(O_HOL3PIN, OUTPUT);
+    pinMode(O_WCPIN, OUTPUT);
     pinMode(O_KWIATYPIN, OUTPUT);
     pinMode(W_KUCHNIAPIN, OUTPUT);
     pinMode(W_LAZIENKAPIN, OUTPUT);
@@ -40,6 +52,10 @@ void OgrzwanieTemp::init()
     send(msg_OG_KUHCNIA);
  	send(msg_OG_LAZIENKA);
 	send(msg_OG_LAMPA);
+    send(msg_OG_HOL1);
+    send(msg_OG_HOL2);
+    send(msg_OG_HOL3);
+    send(msg_OG_WC);
     send(msg_OS_KWIATY);
     send(msg_WI_KUHCNIA);
     send(msg_WI_LAZIENKA);
@@ -52,6 +68,10 @@ void OgrzwanieTemp::presentation()
     present(O_SALON,S_LIGHT,"Ogrz. salonu");
     present(O_KUCHNIA,S_LIGHT,"Ogrz. kuchnia");
     present(O_LAZIENKA,S_LIGHT,"Ogrz. lazienka");
+    present(O_HOL1,S_LIGHT,"Ogrz. hol 1");
+    present(O_HOL2, S_LIGHT,"Ogrz. hol 2");
+    present(O_HOL3,S_LIGHT,"Ogrz. hol 3");
+    present(O_WC,S_LIGHT,"Ogrz. WC");
     present(O_KWIATY,S_LIGHT,"Ośw. kwiatów");
     present(W_KUCHNIA,S_LIGHT,"Wiatrak kuchnia");
     present(W_LAZIENKA,S_LIGHT,"Wiatrak lazienka");
@@ -90,6 +110,34 @@ void OgrzwanieTemp::setOgrzSalon(bool val)
     send(msg_OG_SALON);
     msg_OG_POMPA.set(o_lazienka||o_kuchnia||o_salon);
     send(msg_OG_POMPA);
+}
+
+void OgrzwanieTemp::setOgrzHol1(bool val)
+{
+    digitalWrite(O_HOL1PIN, val?HIGH:LOW);
+    msg_OG_HOL1.set(val);
+    send(msg_OG_HOL1);
+}
+
+void OgrzwanieTemp::setOgrzHol2(bool val)
+{
+    digitalWrite(O_HOL2PIN, val?HIGH:LOW);
+    msg_OG_HOL2.set(val);
+    send(msg_OG_HOL2);
+}
+
+void OgrzwanieTemp::setOgrzHol3(bool val)
+{
+    digitalWrite(O_HOL3PIN, val?HIGH:LOW);
+    msg_OG_HOL3.set(val);
+    send(msg_OG_HOL3);
+}   
+
+void OgrzwanieTemp::setOgrzHolWC(bool val)
+{
+    digitalWrite(O_WC, val?LOW:HIG H);
+    msg_OG_WC.set(val);
+    send(msg_OG_WC);
 }
 
 void OgrzwanieTemp::setPompa(bool val)
@@ -148,16 +196,28 @@ bool OgrzwanieTemp::setMessage(const MyMessage *msg)
             msg_WI_LAZIENKA.set(msg->getBool());
             send(msg_WI_LAZIENKA);
             return true;
+        case O_HOL1:
+            digitalWrite(O_HOL1PIN, msg->getBool()?HIGH:LOW);
+            msg_OG_HOL1.set(msg->getBool());
+            send(msg_OG_HOL1);
+            return true;
+        case O_HOL2:
+            digitalWrite(O_HOL2PIN, msg->getBool()?HIGH:LOW);
+            msg_OG_HOL2.set(msg->getBool());
+            send(msg_OG_HOL2);
+            return true;
+        case O_HOL3:
+            digitalWrite(O_HOL3PIN, msg->getBool()?HIGH:LOW);
+            msg_OG_HOL3.set(msg->getBool());
+            send(msg_OG_HOL3);
+            return true;
+        case O_WC:
+            digitalWrite(O_WCPIN, msg->getBool()?HIGH:LOW);
+            msg_OG_WC.set(msg->getBool());
+            send(msg_OG_WC);
+            return true;
         default:
             return false;
     }
 }
 
-#define O_POMPA 210
-#define O_SALON 211
-#define O_KUCHNIA 212
-#define O_LAZIENKA 213
-#define O_KWIATY 214
-#define W_KUCHNIA 215
-#define W_LAZIENKA 216
-#define O_LAMPA 217
