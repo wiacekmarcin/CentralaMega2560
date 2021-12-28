@@ -28,7 +28,7 @@
 #define W_KUCHNIAPIN 47 //pomaranczowy
 #define W_LAZIENKAPIN 46 //szary
 */
-#define POMPAPIN 46 //brazowy
+#define O_POMPAPIN 46 //brazowy
 #define O_SALONPIN 47 //zielony
 #define O_WCPIN  48 //zielony
 #define O_HOL1PIN  49 //niebieski

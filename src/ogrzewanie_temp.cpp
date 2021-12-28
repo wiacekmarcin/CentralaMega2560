@@ -128,14 +128,14 @@ void OgrzwanieTemp::setOgrzHol2(bool val)
 
 void OgrzwanieTemp::setOgrzHol3(bool val)
 {
-    digitalWrite(O_HOL3PIN, val?HIGH:LOW);
+    digitalWrite(O_HOL3PIN, val?LOW:HIGH);
     msg_OG_HOL3.set(val);
     send(msg_OG_HOL3);
 }   
 
 void OgrzwanieTemp::setOgrzHolWC(bool val)
 {
-    digitalWrite(O_WC, val?LOW:HIG H);
+    digitalWrite(O_WC, val?LOW:HIGH);
     msg_OG_WC.set(val);
     send(msg_OG_WC);
 }
