@@ -42,9 +42,6 @@
 
 
 
-//#define RADIO_ERROR_LED_PIN 4  // Error led pin
-//#define RADIO_RX_LED_PIN    6  // Receive led pin
-//#define RADIO_TX_LED_PIN    5  // the PCB, on board LED
 
 // Wait times
 #define LONG_WAIT 500
@@ -155,7 +152,7 @@ MyMessage msg_S_MULTIMETER_V_CURRENT(ID_S_MULTIMETER,V_CURRENT);
 // V_CURRENT	39	Current level
 #endif
 OgrzwanieTemp ot;
-
+Temperatury tt;
 
 void setup()
 {
@@ -165,6 +162,7 @@ void setup()
 	wait(LONG_WAIT);
 
 	ot.init();
+	tt.init();
 }
 
 void presentation()
@@ -177,7 +175,12 @@ void presentation()
 	metric = getControllerConfig().isMetric;
 	wait(LONG_WAIT);
 
-	
+	tt.presentation();
+  	wait(SHORT_WAIT);
+
+	ot.presentation();
+  	wait(SHORT_WAIT);	  
+
 #if 0
 	kontaktrony_presentation();
 	wait(SHORT_WAIT);
@@ -192,8 +195,7 @@ void presentation()
   	zaslony_presentation();
   	wait(SHORT_WAIT);
 
-  	temperatury_presentation();
-  	wait(SHORT_WAIT);
+  	
 
   	wilgotnosci_presentation();
   	wait(SHORT_WAIT);
@@ -257,7 +259,6 @@ void presentation()
 	wait(SHORT_WAIT);
 #endif
 
-	ot.presentation();
 
 }
 
@@ -269,12 +270,14 @@ void loop()
 	requestTime();
 	wait(LONG_WAIT);
 
+	tt.get();
+	wait(SHORT_WAIT);
 #if 0
 	kontaktrony();
 	czujnikiruchu();
 	zaslony();
 	swiatla();
-  	temperatury();
+  	
 	wilgotnosci();
 	licznikiwody();
   	energiaelektryczna();
